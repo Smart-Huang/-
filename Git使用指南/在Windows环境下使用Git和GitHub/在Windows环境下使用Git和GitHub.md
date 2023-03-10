@@ -27,7 +27,7 @@ git config --global user.email "youremail@gmail.com"
 
 本章仅仅介绍基础命令的使用，对于原理性的内容仅作简单说明。
 
-![Git常用命令](https://csdnimg.cn/cdn/content-toolbar/csdn-logo_.png?v=20190924.1 "CSDN图标")
+![1240](https://cdn.jsdelivr.net/gh/smart-huang/bolgImage@main/img/1240.png)
 
 ### 本地初始化
 
@@ -145,15 +145,38 @@ git add file_to
 
 在任何一个阶段，我们都可能想要撤销某些操作。特别注意的时，**有些撤销操作时不可逆的**。错误的撤销可能导致之前的工作丢失。
 
-1. 有时候我们提交完发现漏掉了几个文件没有添加，或者提交信息填写错误。使用下列命令重新提交。
+#### 重新提交
 
-   ```shell
-   git commit --amend
-   ```
+有时候我们提交完发现漏掉了几个文件没有添加，或者提交信息填写错误。使用下列命令重新提交。
 
-   
+```shell
+git commit --amend
+```
 
+需要说明的时，这是一个提交命令。此次提交是对上次提交的修改，不会产生新的提交记录。这样做的好处是不会让”忘记添加一个文件“或”小修补，修正笔误“之类的提交信息污染仓库历史。
 
+#### 取消暂存文件
+
+当暂存区有文件等待提交时，我们使用 `git status` 命令可以得到以下说明：
+
+```shell
+$ git status
+On branch main
+Changes to be commited:
+	(use "git reset HEAD <file>..." to unstage)
+	
+	modified: CONTRIBUTING.md
+```
+
+提示我们使用 `git reset HEAD` 来取消暂存。
+
+值得注意的时，笔者在自己电脑上运行的时候提示使用 `git restore --staged <file>` 命令。经过测试，两个命令都有效。
+
+#### 撤销对文件的修改
+
+如果不想保留对文件的修改，可以将文件还原成上次提交的状态。使用 `git checkout -- <file>...` 或者 `git restore <file>...` 命令。
+
+值得注意的时，这两个命令**十分危险**。如果文件修改以后未提交，不小心撤销以后，修改的内容是不能找回的。请务必**谨慎使用**。
 
 
 
