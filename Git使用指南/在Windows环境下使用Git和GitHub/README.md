@@ -178,6 +178,22 @@ Changes to be commited:
 
 值得注意的时，这两个命令**十分危险**。如果文件修改以后未提交，不小心撤销以后，修改的内容是不能找回的。请务必**谨慎使用**。
 
+### 远程仓库的使用
+
+为了能在任意Git项目上协作，需要知道如何管理自己的远程仓库。远程仓库是指托管在因特网或其他网路中的你的项目的版本库。
+
+#### 查看远程仓库
+
+如果你想查看你已经配置的远程仓库服务器，可以使用 `git remote` 命令。它会列出你指定的每一个远程仓库的简写。如果你克隆了一个仓库，你会看到origin ——Git给你克隆的仓库服务器的默认名字。
+
+你也可以使用 `git remote -v` 命令，它会显示需要读写远程仓库的url及Git命令：
+
+```shell
+$ git remote -v
+origin  https://github.com/smart-huang/MyNote.git (fetch)
+origin  https://github.com/smart-huang/MyNote.git (push)
+```
+
 
 
 
