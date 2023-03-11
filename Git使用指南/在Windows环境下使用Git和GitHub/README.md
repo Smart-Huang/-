@@ -194,6 +194,74 @@ origin  https://github.com/smart-huang/MyNote.git (fetch)
 origin  https://github.com/smart-huang/MyNote.git (push)
 ```
 
+#### 添加远程仓库
+
+可以使用 `git clone <url>` 命令添加远程仓库，此时Git会自动给远程仓库一个简称——origin。
+
+我们还可以通过 `git remote add <shortname> <url>` 命令手动指定简称。
+
+#### 从远程仓库抓取和拉取
+
+从远程仓库中获取信息可以使用 `git fetch <shortname>` ，这个命令会访问远程仓库，从中抓取你没有的数据。必须注意，这个命令只会将数据下载到你的本地仓库，但是不会自动合并或修改你当前的工作。需要你手动合并。
+
+如果你当前的本地分支设置跟踪远程分支，那么使用 `git pull` 命令会自动抓取后合并到本地分支。默认情况下，`git clone` 命令会自动设置本地main分支跟踪远程仓库的min分支。运行 `git pull` 命令通常会从最初克隆的服务器上抓取数据并自动尝试合并到当前所在的分支。
+
+#### 推送到远程仓库
+
+使用 `git push <remote> <branch>` 命令将本地仓库的内容推送到远程仓库。基本上以下命令可以满足要求：
+
+```shell
+git push origin main
+```
+
+这条指令生效需要满足两个条件，你有远程仓库的写入权限，并且**在你之前没有别人推送过**。如果别人在你之前已经推送过，并且你没有拉取改动，那么你的推动会被拒绝。你必须先抓取他们的工作并将其合并进你的工作后才能推动。
+
+#### 查看某个远程仓库
+
+使用 `git remote show <remote>` 命令，查看远程仓库的信息。
+
+```shell
+$ git remote show origin
+* remote origin
+  Fetch URL: https://github.com/smart-huang/MyNote.git
+  Push  URL: https://github.com/smart-huang/MyNote.git
+  HEAD branch: main
+  Remote branches:
+    main                       tracked
+    refs/remotes/origin/master stale (use 'git remote prune' to remove)
+  Local branch configured for 'git pull':
+    main merges with remote main
+  Local ref configured for 'git push':
+    main pushes to main (up to date)
+```
+
+它会列出远程仓库的URL以及跟踪分支的信息。这个命令会列出本地分支与远程分支的绑定关系，以及远程分支的状态。
+
+#### 远程仓库的重命名与移除
+
+`git remote rename <old_name> <new_name>` 来给远程仓库重命名。
+
+`git remote remove <remote>` 移除特定的远程仓库。
+
+### 打标签
+
+就像其他版本控制系统（VCS）一样，Git可以给仓库历史中的某一个提交打上标签，以示重要。比较有代表性的是人们使用这个功能来标记发布的版本信息（v1.0、v2.0等等）。
+
+#### 列出标签
+
+输入 `git tag` 命令可以查看所有标签。这个命令以**字母顺序**列出标签，但是他们心事的顺序并不重要。
+
+还可以按照特定的模式查找标签。比如说仓库中的代码数量特别多，而我们只对1.8.5系列感兴趣，就可以：
+```shell
+git tag -l "v1.8.5*"
+```
+
+#### 创建标签
+
+Git支持两种标签：轻量标签（lightweight）与附注标签（annotated）。
+
+
+
 
 
 
